@@ -40,7 +40,9 @@ function SignUpPage()
           Continue with Google
         </button>
 
-        
+        <a href="/login" className={LoginStyles.loginLink}>
+          Already have an account? Log in
+        </a>
 
         </div>
         </>
