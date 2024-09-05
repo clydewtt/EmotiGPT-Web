@@ -18,7 +18,7 @@ function SignUpPage()
         <input
         
           type="text"
-          placeholder="Type your email "
+          placeholder="Type your email"
           className={SignUpStyles.loginInput}
           id='username-entry'
         />
