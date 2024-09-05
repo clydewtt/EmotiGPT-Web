@@ -8,8 +8,8 @@ export const routes = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/login-page" element={<LoginPage />} />
-                <Route path="/create-account-page" element={<SignUpPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
             </Routes>
         </Router>
     );
