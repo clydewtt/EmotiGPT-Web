@@ -1,127 +1,87 @@
-body{
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: flex-start; /* Aligns at the top */
-    height: 100vh; /* Full viewport height */ 
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: flex-start; /* Aligns at the top */
+  height: 100vh; /* Full viewport height */
+  font-family: 'Inter', sans-serif;
 }
-
 
 .pageContainer {
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: flex-start; /* Aligns at the top */
-    height: 20vh; /* Ensures the container takes the full height of the viewport */
-    margin-left: 0px;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: flex-start; /* Aligns at the top */
+  height: 20vh; /* Ensures the container takes the full height of the viewport */
+  margin-left: 0px;
 }
 
-label{
-    display: block;
-    margin-bottom: 5px;
-    margin-left: -5px; /* Adjust this value to position closer to the input */
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-  }
+label {
+  display: block;
+  margin-bottom: 5px;
+  margin-left: -5px; /* Adjust this value to position closer to the input */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+}
 
-.pageTitle{
-    text-align: center;
-    color: rgb(0, 0, 0);
-    font-size: 100px;
+.pageTitle {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 100px;
 }
 
 .loginCardContainer {
-    width: 500px;
-    padding: 45px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    text-align: center;
-    min-height: 700px;
-    margin: auto;
-    
-    
-
-    
-  }
+  width: 500px;
+  padding: 45px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  text-align: center;
+  min-height: 700px;
+  margin: auto;
+}
 
 .loginInput {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    margin-bottom: 50px;
-    margin-left: -15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   
-  }
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  margin-bottom: 50px;
+  margin-left: -15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .loginButton {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #64748B;
-    color: white;
-    margin-top: 50px;
-    transition: background 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
-    
-  }
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #64748b;
+  color: white;
+  margin-top: 50px;
+  transition: background 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .loginButton:hover {
-    background-color: #525252ac;
-  } 
+  background-color: #525252ac;
+}
 
 .orText {
-    margin: 20px 0;
-    color: #888;
-    font-size: 16px;
-  }
-  
-  /* Google button styling */
-.googleButton {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Google button icon styling */
-.googleIcon {
-    width: 50px; /* Adjust the width to your desired size */
-    height: 50px; /* Adjust the height to match the width */
-    margin-right: 10px; /* Space between icon and text */
-    object-fit: contain; /* Ensure the icon scales properly */
-  }
-  
-  
-  /* Sign-up link styling */
-  .signupLink {
-    font-size: 14px;
-    color: #000000;
-    text-decoration: none;
-    margin: 50px;
-  }
+  margin: 20px 0;
+  color: #888;
+  font-size: 16px;
+}
 
-.signupLinkContainer
-{
+/* Google button styling */
+.googleButton {
   width: 100%;
   padding: 15px;
   border: 1px solid #ddd;
@@ -135,4 +95,34 @@ label{
   justify-content: center;
   margin-bottom: 20px;
 }
-  
+
+/* Google button icon styling */
+.googleIcon {
+  width: 50px; /* Adjust the width to your desired size */
+  height: 50px; /* Adjust the height to match the width */
+  margin-right: 10px; /* Space between icon and text */
+  object-fit: contain; /* Ensure the icon scales properly */
+}
+
+/* Sign-up link styling */
+.signupLink {
+  font-size: 14px;
+  color: #000000;
+  text-decoration: none;
+  margin: 50px;
+}
+
+.signupLinkContainer {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
