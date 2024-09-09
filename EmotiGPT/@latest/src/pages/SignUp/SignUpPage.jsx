@@ -1,6 +1,6 @@
 import React from "react";
 
-import SignUpStyles from "./LoginSignUp.module.css";
+import SignUpStyles from "./LoginSignUp.css";
 
 import googleIcon from "../assets/google-icon.png";
 
