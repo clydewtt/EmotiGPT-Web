@@ -1,6 +1,7 @@
 import React from "react";
-import LoginStyles from "/Users/abdulkanu/ToDolist React/EmotiGPT-Web/EmotiGPT/@latest/src/pages/Login/LoginPage.css";
-import googleIcon from "../assets/google-icon.png";
+import LoginStyles from "./LoginPage.module.css";
+
+import googleIcon from "../../assets/google-icon.png";
 
 function LoginPage() {
   return (

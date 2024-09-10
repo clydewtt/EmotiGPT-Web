@@ -1,8 +1,9 @@
 import React from "react";
 
-import SignUpStyles from "./LoginSignUp.css";
+import SignUpStyles from "./SignUp.module.css";
 
-import googleIcon from "../assets/google-icon.png";
+
+import googleIcon from "../../assets/google-icon.png";
 
 function SignUpPage() {
   return (

@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import LoginPage from "./Login_Signin_Pages/LoginPage";
-import SignUpPage from "./Login_Signin_Pages/SignUpPage";
-import ChatBox from "/Users/abdulkanu/ToDolist React/EmotiGPT-Web/EmotiGPT/@latest/src/AnalysisTest.jsx";
+import LoginPage from "./pages/Login/LoginPage.jsx";
+import SignUpPage from "./pages/SignUp/SignUpPage.jsx";
+import ChatBox from "./AnalysisTest.jsx";
 
-export const routes = () => {
+export const RoutesToPages = () => {
   return (
     <Router>
       <Routes>
@@ -16,4 +16,4 @@ export const routes = () => {
   );
 };
 
-export default routes;
+export default RoutesToPages;
