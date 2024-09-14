@@ -1,26 +1,22 @@
 import React from "react";
+import SignUpStyles from "./SignUp.module.css";
+import googleIcon from "../../assets/google-icon.png";
 
-import SignUpStyles from "./LoginSignUp.module.css";
-
-import googleIcon from '../assets/google-icon.png';
-
-function SignUpPage()
-{
-    return (
-        <>
-        <div className={SignUpStyles.pageContainer}>
+function SignUpPage() {
+  return (
+    <>
+      <div className={SignUpStyles.pageContainer}>
         <h1 className={SignUpStyles.pageTitle}>EmotiGPT</h1>
-        </div>
+      </div>
 
-        <div className={SignUpStyles.loginCardContainer}>
+      <div className={SignUpStyles.loginCardContainer}>
         <h1>Create Account</h1>
         <label htmlFor="username-entry">Email</label>
         <input
-        
           type="text"
           placeholder="Type your email"
           className={SignUpStyles.loginInput}
-          id='username-entry'
+          id="username-entry"
         />
         <label htmlFor="password-entry">Password</label>
         <input
@@ -40,13 +36,12 @@ function SignUpPage()
           Continue with Google
         </button>
 
-        <a href="/login" className={LoginStyles.loginLink}>
+        <a href="/login" className={SignUpStyles.loginLink}>
           Already have an account? Log in
         </a>
-
-        </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }
 
-export default SignUpPage
+export default SignUpPage;
