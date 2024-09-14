@@ -1,8 +1,5 @@
 import React from "react";
-
 import SignUpStyles from "./SignUp.module.css";
-
-
 import googleIcon from "../../assets/google-icon.png";
 
 function SignUpPage() {
@@ -17,7 +14,7 @@ function SignUpPage() {
         <label htmlFor="username-entry">Email</label>
         <input
           type="text"
-          placeholder="Type your email "
+          placeholder="Type your email"
           className={SignUpStyles.loginInput}
           id="username-entry"
         />
@@ -38,6 +35,10 @@ function SignUpPage() {
           />
           Continue with Google
         </button>
+
+        <a href="/login" className={SignUpStyles.loginLink}>
+          Already have an account? Log in
+        </a>
       </div>
     </>
   );
