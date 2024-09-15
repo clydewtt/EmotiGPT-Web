@@ -1,0 +1,39 @@
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: flex-start; /* Aligns at the top */
+  height: 100vh; /* Full viewport height */
+  font-family: "Inter", sans-serif;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5rem;
+  width: 100vw;
+  height: 100vh;
+}
+
+.menuContainer {
+  display: flex;
+  padding: 1rem 0;
+  align-items: center;
+  flex-direction: column;
+  flex-basis: 20%;
+  background-color: #edf0f5;
+}
+
+.cameraContainer {
+  flex-basis: 45%;
+}
+
+.chatContainer {
+  flex-basis: 35%;
+}
+
+.pageTitle {
+  color: #293151;
+}
