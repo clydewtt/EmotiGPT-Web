@@ -11,13 +11,12 @@ function RealTimeEmotionDetection() {
   const canvasRef = useRef();
   const [currentEmotion, setCurrentEmotion] = useState("");
   const [currentDetections, setCurrentDetections] = useState({});
-  // LOAD FROM USEEFFECT
+
   useEffect(() => {
     startVideo();
     videoRef && loadModels();
   }, []);
 
-  // OPEN YOU FACE WEBCAM
   const startVideo = () => {
     navigator.mediaDevices
       .getUserMedia({ video: true })
@@ -28,11 +27,9 @@ function RealTimeEmotionDetection() {
         console.log(err);
       });
   };
-  // LOAD MODELS FROM FACE API
 
   const loadModels = () => {
     Promise.all([
-      // THIS FOR FACE DETECT AND LOAD FROM YOU PUBLIC/MODELS DIRECTORY
       faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
       faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
       faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
@@ -55,26 +52,12 @@ function RealTimeEmotionDetection() {
           (highest, current) => (current[1] > highest[1] ? current : highest),
           ["neutral", 0] // Default to "neutral" in case no emotion is detected
         );
-        console.log(expressions);
+
         setCurrentEmotion(highestEmotion);
         setCurrentDetections(expressions);
       }
 
-      // const canvas = faceapi.createCanvasFromMedia(videoRef.current);
-      // canvasRef.current.innerHTML = ""; // Clear existing canvas
-      // canvasRef.current.append(canvas);
-
-      // faceapi.matchDimensions(canvas, {
-      //   width: videoRef.current.width,
-      //   height: videoRef.current.height,
-      // });
-
-      // const resized = faceapi.resizeResults(detections, {
-      //   width: videoRef.current.width,
-      //   height: videoRef.current.height,
-      // });
-
-      // DRAW YOU FACE IN WEBCAM
+      // Draw bounding box
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(
         videoRef.current
       );
@@ -102,8 +85,8 @@ function RealTimeEmotionDetection() {
           className={CameraStyles.emotionBar}
           initial={{ width: 0 }}
           animate={{ width: `${value * 100}%` }}
-          transition={{ duration: 0.2 }} // Smooth animation
-          style={{ backgroundColor: "#293151" }} // Customize bar color here
+          transition={{ duration: 0.2 }}
+          style={{ backgroundColor: "#293151" }}
         />
       </div>
     )
@@ -115,7 +98,6 @@ function RealTimeEmotionDetection() {
       <div className={CameraStyles.appvide}>
         <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
       </div>
-      {/* <div>Possible Emotion Detections: {EMOTION_TYPES}</div> */}
       <div className={CameraStyles.emotions}>{emotionBars}</div>
       <canvas ref={canvasRef} className={CameraStyles.appcanvas} />
     </div>
