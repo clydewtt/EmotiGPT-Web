@@ -1,0 +1,45 @@
+.emotionContainer {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.emotionBar {
+  height: 0.75rem;
+  width: 0;
+  background-color: #293151;
+  margin-left: 10px;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+.emotions {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.appvide {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+video {
+  width: 100%;
+  height: auto;
+}
+
+.appcanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+  pointer-events: none;
+}
+
+.myapp {
+  display: flex;
+  flex-direction: column;
+}
