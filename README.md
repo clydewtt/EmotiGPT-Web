@@ -29,7 +29,7 @@ yarn install
 pip install -r requirements.txt
 ```
 
-3. Ensure the backend service is running [EmotiGPT Service](https://github.com/clydewtt/EmotiGPTService).
+3. Ensure the backend service is running:  [EmotiGPT Service](https://github.com/clydewtt/EmotiGPTService).
    
 4. Once the backend service is running, navigate to the directory housing this repo and run the following command in your terminal:
 
