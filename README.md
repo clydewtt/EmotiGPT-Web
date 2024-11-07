@@ -24,7 +24,7 @@ yarn install
 ```
 2. Ensure the backend service is running:  [EmotiGPT Service](https://github.com/clydewtt/EmotiGPTService).
    
-3. Once the backend service is running, navigate to the directory housing this repo _(make sure you're in the @lastest directory)_ and run the following command in your terminal:
+3. Once the backend service is running, navigate to the directory housing this repo _(make sure you're in the @latest directory)_ and run the following command in your terminal:
 
 ```
 npm run dev
