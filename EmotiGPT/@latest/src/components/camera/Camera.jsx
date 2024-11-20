@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const EMOTION_TYPES = Object.values(EmotionType);
 
-function RealTimeEmotionDetection() {
+function RealTimeEmotionDetection({ onEmotionDetected }) {
   const videoRef = useRef();
   const canvasRef = useRef();
   const [currentEmotion, setCurrentEmotion] = useState("");
@@ -53,6 +53,7 @@ function RealTimeEmotionDetection() {
           ["neutral", 0] // Default to "neutral" in case no emotion is detected
         );
 
+        onEmotionDetected(highestEmotion);
         setCurrentEmotion(highestEmotion);
         setCurrentDetections(expressions);
       }
@@ -80,26 +81,29 @@ function RealTimeEmotionDetection() {
   const emotionBars = Object.entries(currentDetections).map(
     ([emotion, value]) => (
       <div key={emotion} className={CameraStyles.emotionContainer}>
-        <span>{emotion}</span>
-        <motion.div
-          className={CameraStyles.emotionBar}
-          initial={{ width: 0 }}
-          animate={{ width: `${value * 100}%` }}
-          transition={{ duration: 0.2 }}
-          style={{ backgroundColor: "#293151" }}
-        />
+        <span className={CameraStyles.emotionLabel}>{emotion}</span>
+        <div className={CameraStyles.emotionBarWrapper}>
+          <motion.div
+            className={CameraStyles.emotionBar}
+            initial={{ width: 0 }}
+            animate={{ width: `${value * 100}%` }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
       </div>
     )
   );
 
   return (
     <div className={CameraStyles.myapp}>
-      <div>Most Probable Emotion: {currentEmotion[0]}</div>
       <div className={CameraStyles.appvide}>
-        <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+        <video ref={videoRef} autoPlay muted />
+        <canvas ref={canvasRef} className={CameraStyles.appcanvas} />
       </div>
-      <div className={CameraStyles.emotions}>{emotionBars}</div>
-      <canvas ref={canvasRef} className={CameraStyles.appcanvas} />
+      <div className={CameraStyles.emotions}>
+        <h3>Most Probable Emotion: {currentEmotion}</h3>
+        {emotionBars}
+      </div>
     </div>
   );
 }
