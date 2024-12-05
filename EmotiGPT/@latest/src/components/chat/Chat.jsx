@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ChatStyles from "./Chat.module.css";
+import MessageIndicator from "../message-indicator/MessageIndicator";
 import axios from "axios";
 import { faPaperPlane, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +9,7 @@ import AudioStream from "../chat/AudioStream";
 function Chat({ detectedEmotion }) {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
+  const [isWaitingForResponse, setIsWaitingForResponse] = useState(false)
   const messagesEndRef = useRef(null);
 
   const voiceId = "21m00Tcm4TlvDq8ikWAM";
@@ -58,6 +60,7 @@ function Chat({ detectedEmotion }) {
   }, [messages]);
 
   const handleSend = async () => {
+    setIsWaitingForResponse(true)
     if (inputText.trim()) {
       const newMessage = {
         sender: "user",
@@ -85,6 +88,7 @@ function Chat({ detectedEmotion }) {
             minute: "2-digit",
           }),
         };
+        setIsWaitingForResponse(false)
         setMessages((prevMessages) => [...prevMessages, receivedMessage]);
         startStreaming(response.data.message);
       } catch (error) {
@@ -94,55 +98,54 @@ function Chat({ detectedEmotion }) {
   };
 
   return (
-    <div className={ChatStyles.chatContainer}>
-      <h3 className={ChatStyles.chatTitle}>Chat with Moti</h3>
-      <div className={ChatStyles.chatDivider}></div>
-      <div className={ChatStyles.messagesContainer}>
-        {messages.map((msg, index) => (
-          <div key={index} className={ChatStyles.messageContainer}>
-            <span
-              className={`${ChatStyles.messageInfo} ${
-                msg.sender === "user"
-                  ? ChatStyles.userMessageInfo
-                  : ChatStyles.botMessageInfo
-              }`}
-            >
-              {msg.sender === "user" ? "You" : "Moxi"} - {msg.timestamp}
-            </span>
-            <div
-              className={`${ChatStyles.message} ${
-                msg.sender === "user"
-                  ? ChatStyles.userMessage
-                  : ChatStyles.botMessage
-              }`}
-            >
-              {msg.text}
+    <>
+      <div className={ChatStyles.chatContainer}>
+        <h3 className={ChatStyles.chatTitle}>Chat with Moti</h3>
+        <div className={ChatStyles.chatDivider}></div>
+        <div className={ChatStyles.messagesContainer}>
+          {messages.map((msg, index) => (
+            <div key={index} className={ChatStyles.messageContainer}>
+              <span
+                className={`${ChatStyles.messageInfo} ${
+                  msg.sender === "user"
+                    ? ChatStyles.userMessageInfo
+                    : ChatStyles.botMessageInfo
+                }`}
+              >
+                {msg.sender === "user" ? "You" : "Moxi"} - {msg.timestamp}
+              </span>
+              <div
+                className={`${ChatStyles.message} ${
+                  msg.sender === "user"
+                    ? ChatStyles.userMessage
+                    : ChatStyles.botMessage
+                }`}
+              >
+                {msg.text}
+              </div>
             </div>
+          ))}
+          {/* Empty div to keep track of the end of messages */}
+          <div ref={messagesEndRef} />
+        </div>
+        {isWaitingForResponse && <MessageIndicator />}
+        <div className={ChatStyles.inputContainer}>
+          <div className={ChatStyles.inputInnerContainer}>
+            <input
+              type="text"
+              placeholder="Message Moti"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              className={ChatStyles.inputField}
+            />
+            <button onClick={handleSend} className={ChatStyles.sendButton}>
+              Send
+            </button>
+            {/* <FontAwesomeIcon icon={faPaperPlane} size="xl" /> */}
           </div>
-        ))}
-        {/* Empty div to keep track of the end of messages */}
-        <div ref={messagesEndRef} />
-      </div>
-      <div className={ChatStyles.inputContainer}>
-        <div className={ChatStyles.inputInnerContainer}>
-          <input
-            type="text"
-            placeholder="Message Moti"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            className={ChatStyles.inputField}
-          />
-          <button onClick={handleSend} className={ChatStyles.sendButton}>
-            Send
-          </button>
-          {/* <FontAwesomeIcon icon={faPaperPlane} size="xl" /> */}
-        </div>
-
-        <div className={ChatStyles.micContainer}>
-          <FontAwesomeIcon icon={faMicrophone} size="xl" color="white" />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

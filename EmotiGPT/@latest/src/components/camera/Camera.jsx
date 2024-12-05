@@ -6,12 +6,22 @@ import { motion } from "framer-motion";
 
 const EMOTION_TYPES = Object.values(EmotionType);
 
+const EMOTION_EMOJI_MAP = {
+  "neutral": "😐",
+  "happy": "😊",
+  "sad": "😢",
+  "angry": "😠",
+  "disgusted": "😖",
+  "surprised": "😲",
+  "fearful": "😨",
+};
+
 function RealTimeEmotionDetection({ onEmotionDetected }) {
   const videoRef = useRef();
   const canvasRef = useRef();
   const [currentEmotion, setCurrentEmotion] = useState("");
   const [currentDetections, setCurrentDetections] = useState({});
-
+  
   useEffect(() => {
     startVideo();
     videoRef && loadModels();
@@ -95,16 +105,31 @@ function RealTimeEmotionDetection({ onEmotionDetected }) {
   );
 
   return (
-    <div className={CameraStyles.myapp}>
-      <div className={CameraStyles.appvide}>
-        <video ref={videoRef} autoPlay muted />
-        <canvas ref={canvasRef} className={CameraStyles.appcanvas} />
+    <>
+      <div className={CameraStyles.myapp}>
+        <div className={CameraStyles.appvide}>
+          <video ref={videoRef} autoPlay muted />
+          <canvas ref={canvasRef} className={CameraStyles.appcanvas} />
+        </div>
+        <div className={CameraStyles.emotions}>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <h3>
+              Most Probable Emotion: {currentEmotion[0]}
+              {EMOTION_EMOJI_MAP[currentEmotion[0]]}
+            </h3>
+            <h3>Probability: {(currentEmotion[1] * 100).toFixed(2)}%</h3>
+          </div>
+          {emotionBars}
+        </div>
       </div>
-      <div className={CameraStyles.emotions}>
-        <h3>Most Probable Emotion: {currentEmotion}</h3>
-        {emotionBars}
-      </div>
-    </div>
+    </>
   );
 }
 

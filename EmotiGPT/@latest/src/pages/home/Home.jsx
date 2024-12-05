@@ -31,19 +31,28 @@ function categorizeConversations(conversations) {
 
 function Home() {
   const [currentEmotion, setCurrentEmotion] = useState("");
-  const conversations = [
-    { name: "Temp Convo 1", date: new Date() }, // Today
-    { name: "Temp Convo 2", date: new Date(Date.now() - 86400000) }, // Yesterday
-    { name: "Temp Convo 3", date: new Date(Date.now() - 3 * 86400000) }, // Last 3 days
-    { name: "Temp Convo 4", date: new Date(Date.now() - 7 * 86400000) }, // Last week
-    { name: "Temp Convo 5", date: new Date(Date.now() - 14 * 86400000) }, // Older
-  ];
+  const [emotionHistory, setEmotionHistory] = useState([]);
 
-  const categorizedConversations = categorizeConversations(conversations);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentEmotion && currentEmotion[0]) {
+        setEmotionHistory((prev) => [
+          {
+            emotion: currentEmotion[0],
+            confidence: (currentEmotion[1] * 100).toFixed(2),
+            time: new Date(),
+          },
+          ...prev,
+        ]);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentEmotion]);
 
   return (
     <div className={HomeStyles.pageContainer}>
-      <div className={HomeStyles.menuContainer}>
+      <div className={HomeStyles.historyContainer}>
         <div style={{ width: "100%", textAlign: "center" }}>
           <img
             src={emoti_gpt_logo}
@@ -51,19 +60,31 @@ function Home() {
             style={{ width: "4rem", height: "auto", marginBottom: "1rem" }}
           />
         </div>
-
-        {Object.entries(categorizedConversations).map(([category, convos]) => (
-          <div key={category} className={HomeStyles.conversationContainer}>
-            <p className={HomeStyles.categoryTitle}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </p>
-            {convos.map((convo, index) => (
-              <div key={index} className={HomeStyles.menuListItem}>
-                <p>{convo.name}</p>
+        
+        <h3>Emotion History</h3>
+        <div className={HomeStyles.historyList}>
+          {emotionHistory.length > 0 ? (
+            emotionHistory.map((entry, index) => (
+              <div key={index} className={HomeStyles.historyItem}>
+                <p>
+                  <strong>Emotion:</strong> {entry.emotion}
+                </p>
+                <p>
+                  <strong>Confidence:</strong> {entry.confidence}%
+                </p>
+                <p>
+                  <strong>Time:</strong>{" "}
+                  {entry.time.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
               </div>
-            ))}
-          </div>
-        ))}
+            ))
+          ) : (
+            <p>No emotions detected yet.</p>
+          )}
+        </div>
       </div>
 
       <div className={HomeStyles.chatContainer}>
